@@ -17,20 +17,23 @@ endif ()
 
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 
-add_executable(QTTEST
-  main.cpp
+#QtTest Project start
+add_executable(QtTest
+  QtTest/main.cpp
+  Demo/Property/MyClass.h
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(QtTest PUBLIC
     ${Qt5Core_INCLUDE_DIRS}
     ${Qt5Gui_INCLUDE_DIRS}
     ${Qt5Widgets_INCLUDE_DIRS}
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(QtTest PRIVATE
     ${Qt5Core_LIBRARIES}
     ${Qt5Gui_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
 )
 
-install(TARGETS QTTEST DESTINATION bin)
+install(TARGETS QtTest DESTINATION bin)
+#QtTest Project end
