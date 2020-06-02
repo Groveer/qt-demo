@@ -20,7 +20,7 @@ find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 #QtTest Project start
 add_executable(QtTest
   QtTest/main.cpp
-  Demo/Property/MyClass.h
+  Demo/FindChild/FindChild.cpp
 )
 
 target_include_directories(QtTest PUBLIC

@@ -1,4 +1,4 @@
-#include "Demo/Property/MyClass.h"
+#include "Demo/FindChild/FindChild.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -8,10 +8,8 @@
 int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
-    QSharedPointer<MyClass> instance(new MyClass);
-    QSharedPointer<QObject> obj(instance);
 
-    instance->setPriority(MyClass::VeryHigh);
-    obj->setProperty("priority", "VeryHigh");
+    FindChild w;
+    w.show();
     return a.exec();
 }
