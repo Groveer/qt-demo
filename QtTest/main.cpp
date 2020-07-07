@@ -1,15 +1,13 @@
-#include "Demo/FindChild/FindChild.h"
-
 #include <QApplication>
+#include <QCommandLineParser>
 #include <QDebug>
-#include <QScopedPointer>
-#include <QSharedPointer>
+
+#include "Demo/Reader/Reader.h"
 
 int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
 
-    FindChild w;
-    w.show();
+    Reader(a);
     return a.exec();
 }
