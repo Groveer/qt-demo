@@ -1,13 +1,17 @@
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QDebug>
+#include <QString>
+#include <QStorageInfo>
 
-#include "Demo/Reader/Reader.h"
+#include "Demo/FileSystem/FileSystem.h"
+
 
 int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
 
-    Reader(a);
-    return a.exec();
+    getFileSystem();
+    
+    return 0;
 }
