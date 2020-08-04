@@ -18,12 +18,16 @@ if (NOT (${CMAKE_BUILD_TYPE} MATCHES "Debug"))
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast")
 endif ()
 
-find_package(PkgConfig REQUIRED)
+if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "mips64")
+    add_definitions(-DMKGRUB)
+    message(${CMAKE_SYSTEM_PROCESSOR})
+endif()
+#find_package(PkgConfig REQUIRED)
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 
-pkg_search_module(UDisk2 REQUIRED udisks2-qt5)
+#pkg_search_module(UDisk2 REQUIRED udisks2-qt5)
 
-include_directories(AFTER ${UDisk2_INCLUDE_DIRS})
+#include_directories(AFTER ${UDisk2_INCLUDE_DIRS})
 #QtTest Project start
 add_executable(${BIN_NAME}
   QtTest/main.cpp
