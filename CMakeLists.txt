@@ -18,20 +18,16 @@ if (NOT (${CMAKE_BUILD_TYPE} MATCHES "Debug"))
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast")
 endif ()
 
-if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "mips64")
-    add_definitions(-DMKGRUB)
-    message(${CMAKE_SYSTEM_PROCESSOR})
-endif()
 #find_package(PkgConfig REQUIRED)
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 
-#pkg_search_module(UDisk2 REQUIRED udisks2-qt5)
-
-#include_directories(AFTER ${UDisk2_INCLUDE_DIRS})
-#QtTest Project start
-add_executable(${BIN_NAME}
-  QtTest/main.cpp
+file(GLOB_RECURSE SRCS
+    "src/*.h"
+    "src/*.cpp"
+    "icons/icons.qrc"
 )
+#QtTest Project start
+add_executable(${BIN_NAME} ${SRCS})
 
 target_include_directories(${BIN_NAME} PUBLIC
     ${Qt5Core_INCLUDE_DIRS}
