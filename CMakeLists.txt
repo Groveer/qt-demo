@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-set(BIN_NAME QtTest)
+set(BIN_NAME qttest)
 
 project(${BIN_NAME} CXX)
 
