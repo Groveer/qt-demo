@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.13)
 
-set(BIN_NAME qttest)
+set(BIN_NAME qt-demo)
 
 project(${BIN_NAME} CXX)
 
