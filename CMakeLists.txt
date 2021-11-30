@@ -20,7 +20,7 @@ endif ()
 
 find_package(PkgConfig REQUIRED)
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
-pkg_search_module(X11 REQUIRED x11)
+#pkg_search_module(XCB REQUIRED xcb)
 
 file(GLOB_RECURSE SRCS
     "src/*.h"
@@ -34,14 +34,12 @@ target_include_directories(${BIN_NAME} PUBLIC
     ${Qt5Core_INCLUDE_DIRS}
     ${Qt5Gui_INCLUDE_DIRS}
     ${Qt5Widgets_INCLUDE_DIRS}
-    ${X11_INCLUDE_DIRS}
 )
 
 target_link_libraries(${BIN_NAME} PRIVATE
     ${Qt5Core_LIBRARIES}
     ${Qt5Gui_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
-    ${X11_LIBRARIES}
 )
 
 install(TARGETS ${BIN_NAME} DESTINATION bin)

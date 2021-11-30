@@ -1,11 +1,10 @@
-#include <QApplication>
-
-#include "mainwindow.h"
+#include <QCoreApplication>
+#include <QLocale>
+#include <QDebug>
 
 int main(int argc, char **argv)
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.showMaximized();
+    QCoreApplication a(argc, argv);
+    qDebug() << QLocale::system().name();
     return a.exec();
 }
