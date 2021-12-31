@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-set(BIN_NAME qt-demo)
-
-project(${BIN_NAME} CXX)
+project(qt-demo CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED 17)
 set(CMAKE_AUTOMOC ON)
@@ -22,25 +20,47 @@ find_package(PkgConfig REQUIRED)
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 #pkg_search_module(XCB REQUIRED xcb)
 
-file(GLOB_RECURSE SRCS
-    "src/*.h"
-    "src/*.cpp"
-    "icons/icons.qrc"
+file(GLOB_RECURSE SRCS_UTILS
+    "utils/*.h"
+    "utils/*.cpp"
 )
-#QtTest Project start
-add_executable(${BIN_NAME} ${SRCS})
 
-target_include_directories(${BIN_NAME} PUBLIC
+#-----------------------------qt-plugin--------------------------------
+
+file(GLOB_RECURSE SRCS_PLUGIN
+    "qt-plugin/src/*.h"
+    "qt-plugin/src/*.cpp"
+)
+
+set(BIN_NAME_PLUGIN qt-plugin)
+add_executable(${BIN_NAME_PLUGIN} ${SRCS_PLUGIN} ${SRCS_UTILS})
+
+target_include_directories(${BIN_NAME_PLUGIN} PUBLIC
     ${Qt5Core_INCLUDE_DIRS}
     ${Qt5Gui_INCLUDE_DIRS}
     ${Qt5Widgets_INCLUDE_DIRS}
 )
 
-target_link_libraries(${BIN_NAME} PRIVATE
+target_link_libraries(${BIN_NAME_PLUGIN} PRIVATE
     ${Qt5Core_LIBRARIES}
     ${Qt5Gui_LIBRARIES}
     ${Qt5Widgets_LIBRARIES}
 )
 
-install(TARGETS ${BIN_NAME} DESTINATION bin)
-#QtTest Project end
+install(TARGETS ${BIN_NAME_PLUGIN} DESTINATION bin)
+
+#-----------------------------temp--------------------------------
+
+set(DEEPIN_PW_CHECK libdeepin_pw_check.so)
+
+file(GLOB_RECURSE SRCS_TEMP
+    "temp/*.h"
+    "temp/*.cpp"
+)
+
+set(BIN_NAME_TEMP temp)
+# add_executable(${BIN_NAME_TEMP} ${SRCS_TEMP})
+
+# target_link_libraries(${BIN_NAME_TEMP} PRIVATE
+#     ${DEEPIN_PW_CHECK}
+# )

@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>checked.png</file>
-        <file>uncheck.png</file>
-        <file>remove.png</file>
-    </qresource>
-</RCC>
