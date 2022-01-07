@@ -17,7 +17,7 @@ if (NOT (${CMAKE_BUILD_TYPE} MATCHES "Debug"))
 endif ()
 
 find_package(PkgConfig REQUIRED)
-find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Widgets Quick REQUIRED)
 #pkg_search_module(XCB REQUIRED xcb)
 
 file(GLOB_RECURSE SRCS_UTILS
@@ -28,8 +28,8 @@ file(GLOB_RECURSE SRCS_UTILS
 #-----------------------------qt-plugin--------------------------------
 
 file(GLOB_RECURSE SRCS_PLUGIN
-    "qt-plugin/src/*.h"
-    "qt-plugin/src/*.cpp"
+    "qt-plugin/*.h"
+    "qt-plugin/*.cpp"
 )
 
 set(BIN_NAME_PLUGIN qt-plugin)
@@ -49,18 +49,23 @@ target_link_libraries(${BIN_NAME_PLUGIN} PRIVATE
 
 install(TARGETS ${BIN_NAME_PLUGIN} DESTINATION bin)
 
-#-----------------------------temp--------------------------------
+#-----------------------------qt-qml--------------------------------
 
-set(DEEPIN_PW_CHECK libdeepin_pw_check.so)
-
-file(GLOB_RECURSE SRCS_TEMP
-    "temp/*.h"
-    "temp/*.cpp"
+file(GLOB_RECURSE SRCS_QML
+    "qt-qml/*.h"
+    "qt-qml/*.cpp"
+    "qt-qml/*.qrc"
 )
 
-set(BIN_NAME_TEMP temp)
-# add_executable(${BIN_NAME_TEMP} ${SRCS_TEMP})
+set(BIN_NAME_QML qt-qml)
+add_executable(${BIN_NAME_QML} ${SRCS_QML})
 
-# target_link_libraries(${BIN_NAME_TEMP} PRIVATE
-#     ${DEEPIN_PW_CHECK}
-# )
+target_include_directories(${BIN_NAME_QML} PUBLIC
+    ${Qt5Core_INCLUDE_DIRS}
+    ${Qt5Quick_INCLUDE_DIRS}
+)
+
+target_link_libraries(${BIN_NAME_QML} PRIVATE
+    ${Qt5Core_LIBRARIES}
+    ${Qt5Quick_LIBRARIES}
+)
