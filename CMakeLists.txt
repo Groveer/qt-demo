@@ -36,15 +36,13 @@ set(BIN_NAME_PLUGIN qt-plugin)
 add_executable(${BIN_NAME_PLUGIN} ${SRCS_PLUGIN} ${SRCS_UTILS})
 
 target_include_directories(${BIN_NAME_PLUGIN} PUBLIC
-    ${Qt5Core_INCLUDE_DIRS}
-    ${Qt5Gui_INCLUDE_DIRS}
-    ${Qt5Widgets_INCLUDE_DIRS}
+    Qt5::Core
+    Qt5::Widgets
 )
 
 target_link_libraries(${BIN_NAME_PLUGIN} PRIVATE
-    ${Qt5Core_LIBRARIES}
-    ${Qt5Gui_LIBRARIES}
-    ${Qt5Widgets_LIBRARIES}
+    Qt5::Core
+    Qt5::Widgets
 )
 
 install(TARGETS ${BIN_NAME_PLUGIN} DESTINATION bin)
@@ -61,11 +59,11 @@ set(BIN_NAME_QML qt-qml)
 add_executable(${BIN_NAME_QML} ${SRCS_QML})
 
 target_include_directories(${BIN_NAME_QML} PUBLIC
-    ${Qt5Core_INCLUDE_DIRS}
-    ${Qt5Quick_INCLUDE_DIRS}
+    Qt5::Core
+    Qt5::Quick
 )
 
 target_link_libraries(${BIN_NAME_QML} PRIVATE
-    ${Qt5Core_LIBRARIES}
-    ${Qt5Quick_LIBRARIES}
+    Qt5::Core
+    Qt5::Quick
 )
