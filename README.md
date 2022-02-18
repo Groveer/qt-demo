@@ -5,7 +5,7 @@ qt demo and test
 * pkg-config
 * cmake
 * Qt5(>= 5.11.3) with modules:
-    - qt5-default
+    - qt5-base
 ## Runtime dependencies
 # Installation
 ## Build from source code
@@ -13,9 +13,9 @@ qt demo and test
 
 2. Build:
 ```
-$ cd dde-control-center
-$ mkdir Build
-$ cd Build
+$ cd qt-demo
+$ mkdir build
+$ cd build
 $ cmake ..
 $ make
 ```
@@ -26,4 +26,4 @@ $ sudo make install
 ```
 
 # License
-QtTest is licensed under GPLv3.
+qt-demo is licensed under GPLv3.
