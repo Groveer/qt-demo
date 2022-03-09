@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.16)
 
 project(qt-demo CXX)
 
@@ -16,8 +16,15 @@ if (NOT (${CMAKE_BUILD_TYPE} MATCHES "Debug"))
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast")
 endif ()
 
+find_package(ECM 1.0.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
 find_package(PkgConfig REQUIRED)
-find_package(Qt5 COMPONENTS Core Widgets Quick REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets Quick)
+find_package(KF5 REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons XmlGui TextWidgets)
+# find_package(KF5CoreAddons REQUIRED)
+# find_package(KF5WidgetsAddons REQUIRED)
+# find_package(KF5I18n REQUIRED)
 #pkg_search_module(XCB REQUIRED xcb)
 
 file(GLOB_RECURSE SRCS_UTILS
@@ -66,4 +73,32 @@ target_include_directories(${BIN_NAME_QML} PUBLIC
 target_link_libraries(${BIN_NAME_QML} PRIVATE
     Qt5::Core
     Qt5::Quick
+)
+
+#-----------------------------kf5-demo--------------------------------
+file(GLOB_RECURSE SRCS_KF5
+    "kf5-demo/*.h"
+    "kf5-demo/*.cpp"
+    "kf5-demo/*.qrc"
+)
+
+set(BIN_NAME_KF5 kf5-demo)
+add_executable(${BIN_NAME_KF5} ${SRCS_KF5})
+
+target_include_directories(${BIN_NAME_KF5} PUBLIC
+    Qt5::Widgets
+    KF5::CoreAddons
+    KF5::WidgetsAddons
+    KF5::I18n
+    KF5::XmlGui
+    KF5::TextWidgets
+)
+
+target_link_libraries(${BIN_NAME_KF5} PRIVATE
+    Qt5::Widgets
+    KF5::CoreAddons
+    KF5::WidgetsAddons
+    KF5::I18n
+    KF5::XmlGui
+    KF5::TextWidgets
 )

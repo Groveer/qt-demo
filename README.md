@@ -4,8 +4,14 @@ qt demo and test
 ## Build dependencies
 * pkg-config
 * cmake
-* Qt5(>= 5.11.3) with modules:
+* Qt5(>= 5.3.0) with modules:
     - qt5-base
+* KF5(>= 5.2.0) with modules:
+    - extra-cmake-modules
+    - kcoreaddons
+    - kwidgetsaddons
+    - kxmlgui
+    - ki18n
 ## Runtime dependencies
 # Installation
 ## Build from source code
