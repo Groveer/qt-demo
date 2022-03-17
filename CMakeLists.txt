@@ -16,15 +16,8 @@ if (NOT (${CMAKE_BUILD_TYPE} MATCHES "Debug"))
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast")
 endif ()
 
-find_package(ECM 1.0.0 REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
 find_package(PkgConfig REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Quick)
-find_package(KF5 REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons XmlGui TextWidgets)
-# find_package(KF5CoreAddons REQUIRED)
-# find_package(KF5WidgetsAddons REQUIRED)
-# find_package(KF5I18n REQUIRED)
 #pkg_search_module(XCB REQUIRED xcb)
 
 file(GLOB_RECURSE SRCS_UTILS
@@ -76,6 +69,11 @@ target_link_libraries(${BIN_NAME_QML} PRIVATE
 )
 
 #-----------------------------kf5-demo--------------------------------
+find_package(ECM 1.0.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+find_package(KF5 REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons XmlGui TextWidgets)
+
 file(GLOB_RECURSE SRCS_KF5
     "kf5-demo/*.h"
     "kf5-demo/*.cpp"
@@ -101,4 +99,27 @@ target_link_libraries(${BIN_NAME_KF5} PRIVATE
     KF5::I18n
     KF5::XmlGui
     KF5::TextWidgets
+)
+
+#-----------------------------dtk-demo--------------------------------
+find_package(DtkWidget REQUIRED)
+
+file(GLOB_RECURSE SRCS_DTK
+    "dtk-demo/*.h"
+    "dtk-demo/*.cpp"
+)
+
+set(BIN_NAME_DTK dtk-demo)
+add_executable(${BIN_NAME_DTK} ${SRCS_DTK} ${SRCS_UTILS})
+
+target_include_directories(${BIN_NAME_DTK} PUBLIC
+    Qt5::Core
+    Qt5::Widgets
+    ${DtkWidget_INCLUDE_DIRS}
+)
+
+target_link_libraries(${BIN_NAME_DTK} PRIVATE
+    Qt5::Core
+    Qt5::Widgets
+    ${DtkWidget_LIBRARIES}
 )
