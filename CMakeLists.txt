@@ -17,7 +17,7 @@ if (NOT (${CMAKE_BUILD_TYPE} MATCHES "Debug"))
 endif ()
 
 find_package(PkgConfig REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 #pkg_search_module(XCB REQUIRED xcb)
 
 file(GLOB_RECURSE SRCS_UTILS
@@ -36,11 +36,31 @@ set(BIN_NAME_PLUGIN qt-plugin)
 add_executable(${BIN_NAME_PLUGIN} ${SRCS_PLUGIN} ${SRCS_UTILS})
 
 target_include_directories(${BIN_NAME_PLUGIN} PUBLIC
-    Qt6::Core
-    Qt6::Widgets
+    Qt5::Core
+    Qt5::Widgets
 )
 
 target_link_libraries(${BIN_NAME_PLUGIN} PRIVATE
-    Qt6::Core
-    Qt6::Widgets
+    Qt5::Core
+    Qt5::Widgets
+)
+
+#-----------------------------qt-demo--------------------------------
+
+file(GLOB_RECURSE SRCS_DEMO
+    "qt-demo/*.h"
+    "qt-demo/*.cpp"
+)
+
+set(BIN_NAME_DEMO qt-demo)
+add_executable(${BIN_NAME_DEMO} ${SRCS_DEMO} ${SRCS_UTILS})
+
+target_include_directories(${BIN_NAME_DEMO} PUBLIC
+    Qt5::Core
+    Qt5::Widgets
+)
+
+target_link_libraries(${BIN_NAME_DEMO} PRIVATE
+    Qt5::Core
+    Qt5::Widgets
 )
