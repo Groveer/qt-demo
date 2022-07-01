@@ -1,15 +1,13 @@
-#include "utils/global.h"
+#include <test.h>
 
-#include <QApplication>
-#include <QLabel>
+#include <QCoreApplication>
 #include <QDebug>
 
 int main(int argc, char **argv)
 {
-    QApplication a(argc, argv);
-    QLabel label("This a test App!");
-    label.show();
-    Global::setWindowCenter(&label);
+    QCoreApplication a(argc, argv);
+    Test::Test test;
+    qDebug() << test.add(1, 2);
 
     return a.exec();
 }

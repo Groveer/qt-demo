@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(qt-demo CXX)
+project(qt-demo)
 
-set(CMAKE_CXX_STANDARD_REQUIRED 17)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -18,7 +19,8 @@ endif ()
 
 find_package(PkgConfig REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
-#pkg_search_module(XCB REQUIRED xcb)
+find_package(DFramework REQUIRED)
+#pkg_search_module(DFW REQUIRED dframework)
 
 file(GLOB_RECURSE SRCS_UTILS
     "utils/*.h"
@@ -53,14 +55,14 @@ file(GLOB_RECURSE SRCS_DEMO
 )
 
 set(BIN_NAME_DEMO qt-demo)
-add_executable(${BIN_NAME_DEMO} ${SRCS_DEMO} ${SRCS_UTILS})
+add_executable(${BIN_NAME_DEMO} ${SRCS_DEMO})
 
 target_include_directories(${BIN_NAME_DEMO} PUBLIC
     Qt5::Core
-    Qt5::Widgets
+		${DFramework_INCLUDE_DIRS}
 )
 
 target_link_libraries(${BIN_NAME_DEMO} PRIVATE
     Qt5::Core
-    Qt5::Widgets
+		${DFramework_LIBRARIES}
 )
