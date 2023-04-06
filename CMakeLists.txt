@@ -13,3 +13,4 @@ project(qt-demo
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(1)
+add_subdirectory(log)

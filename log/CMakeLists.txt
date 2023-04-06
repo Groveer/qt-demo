@@ -15,7 +15,7 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
 #--------------------------qt----------------------
-set(QT_NAME qt-demo-1)
+set(QT_NAME qt-demo-log)
 
 # 建议对不同的模块进行分类，使用通配符最佳
 file(GLOB_RECURSE QT_SRCS
@@ -25,6 +25,10 @@ file(GLOB_RECURSE QT_SRCS
 # 生成可执行文件
 add_executable(${QT_NAME}
     ${QT_SRCS} # 不同模块的文件列表变量在这里使用
+)
+
+target_compile_definitions(${QT_NAME} PRIVATE
+    # QT_MESSAGELOGCONTEXT
 )
 
 target_include_directories(${QT_NAME} PUBLIC
