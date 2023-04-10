@@ -73,7 +73,7 @@ void print()
     // qCWarning(dpm3) << "hello world";
     // qCCritical(dpm4) << "hello world";
     // qFatal("123");
-    qCInfo(dpm2) << "add result:" << add(1, 2);
+    qDebug() << "add result:" << add(1, 2);
     qApp->quit();
 }
 

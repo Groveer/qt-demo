@@ -1,35 +1,39 @@
-# QtTest
+# QtDemo
+
 qt demo and test
+
 # Dependencies
+
 ## Build dependencies
-* pkg-config
-* cmake
-* Qt5(>= 5.3.0) with modules:
-    - qt5-base
-* KF5(>= 5.2.0) with modules:
-    - extra-cmake-modules
-    - kcoreaddons
-    - kwidgetsaddons
-    - kxmlgui
-    - ki18n
+
+- pkg-config
+- meson
+- Qt6(>= 6.2.0) with modules:
+  - qt6-base
+
 ## Runtime dependencies
+
 # Installation
+
 ## Build from source code
+
 1. Make sure you have installed all dependencies.
 
 2. Build:
+
 ```
 $ cd qt-demo
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
+$ meson setup build
+$ meson compile -C build
 ```
 
 3. Install:
+
 ```
-$ sudo make install
+$ meson configure build --prefix=/usr
+$ meson install -C build
 ```
 
 # License
+
 qt-demo is licensed under GPLv3.
