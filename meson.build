@@ -6,4 +6,4 @@ project('qt-demo',
 subdir('1')
 subdir('log')
 subdir('memory-leak')
-subdir('greeter')
+subdir('shrmem')
