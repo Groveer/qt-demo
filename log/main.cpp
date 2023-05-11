@@ -38,7 +38,7 @@ void file_message_handler(QtMsgType type, const QMessageLogContext &context, con
     if (formattedMessage.isNull())
         return;
     if (logFile.isOpen())
-        logStream << formattedMessage << Qt::endl;
+        logStream << formattedMessage << endl;
 }
 
 void systemd_message_handler(QtMsgType type,
