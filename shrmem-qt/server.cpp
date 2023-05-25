@@ -1,9 +1,9 @@
 #include "sharedimage.h"
 
 #include <QCommandLineParser>
+#include <QCoreApplication>
 #include <QDebug>
 #include <QFile>
-#include <QCoreApplication>
 #include <QScopedPointer>
 
 int main(int argc, char *argv[])
