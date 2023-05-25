@@ -38,7 +38,11 @@ void file_message_handler(QtMsgType type, const QMessageLogContext &context, con
     if (formattedMessage.isNull())
         return;
     if (logFile.isOpen())
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+        logStream << formattedMessage << Qt::endl;
+#else
         logStream << formattedMessage << endl;
+#endif
 }
 
 void systemd_message_handler(QtMsgType type,
