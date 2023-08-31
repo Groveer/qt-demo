@@ -156,10 +156,10 @@ int main(int argc, char *argv[])
         logStream.setDevice(&logFile);
     }
     qSetMessagePattern(
-            "[%{time yyyy-MM-dd h:mm:ss.zzz t} %{file}:%{line} %{function}] [pid: %{pid} tid: "
-            "%{threadid}]"
-            "[%{if-debug}D%{endif}%{if-info}I%{endif}%{if-warning}W%{endif}%{if-critical}"
-            "C%{endif}%{if-fatal}F%{endif}] %{if-category}[ %{category} ]%{endif} %{message} ");
+        "[%{time yyyy-MM-dd h:mm:ss.zzz t} %{file}:%{line} %{function}] [pid: %{pid} tid: "
+        "%{threadid}]"
+        "[%{if-debug}D%{endif}%{if-info}I%{endif}%{if-warning}W%{endif}%{if-critical}"
+        "C%{endif}%{if-fatal}F%{endif}] %{if-category}[ %{category} ]%{endif} %{message} ");
     qInstallMessageHandler(systemd_message_handler);
     qputenv("QT_LOGGING_RULES", "*.debug=false");
     QTimer::singleShot(0, print);
