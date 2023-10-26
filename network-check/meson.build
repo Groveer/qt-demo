@@ -1,8 +1,8 @@
 qt = import('qt5')
-qt_dep = dependency('qt5', modules: ['Core','Concurrent'])
+qt_dep = dependency('qt5', modules: ['Core','Concurrent', 'Network'])
 dtknetworkmanager_dep = dependency('dtknetworkmanager')
 dtkcore_dep = dependency('dtkcore')
-libnm_dep = dependency('libnm')
+# libnm_dep = dependency('libnm')
 
 executable('qt-demo', ['main.cpp'],
-           dependencies : [qt_dep, dtknetworkmanager_dep, dtkcore_dep, libnm_dep])
+           dependencies : [qt_dep, dtknetworkmanager_dep, dtkcore_dep])
